@@ -1,22 +1,21 @@
 pragma solidity ^0.5.0;
 contract Jinja{
-    mapping(address => bool) public SHINJA;
+    struct SHINJA{
+        string name;
+        bool judge;
+    }
+    mapping(address => SHINJA) public SHINJAs;
     
     function judgeSHINJA() public view returns (uint) {
-        if(SHINJA[msg.sender]){
+        if(SHINJAs[msg.sender].judge){
             return 1;
         }else{
             return 0;
         }
     }
 
-    function makeSHINJA() public{
-        SHINJA[msg.sender] = true;
+    function makeSHINJA(string memory name) public{
+        SHINJAs[msg.sender].name = name;
+        SHINJAs[msg.sender].judge = true;
     }
-
-    
-
-
-
-
 }
